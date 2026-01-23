@@ -1,0 +1,111 @@
+{% load static %}
+
+    <!-- Topbar Start -->
+    <div class="container-fluid bg-dark py-1 d-none d-md-flex">
+      <div class="container">
+        <div class="d-flex justify-content-between align-items-center topbar">
+          <div class="top-info">
+            <small class="me-3 text-white-100"
+              ><a href="#"
+                ><i class="fas fa-map-marker-alt me-2 text-warning"></i></a
+              >Lahan, Siraha, Nepal</small
+            >
+            <small class="me-3 text-white-50"
+              ><a href="mailto:admin@startupghar.com" class="text-white-50"
+                ><i class="fas fa-envelope me-2 text-warning"></i
+                >admin@startupghar.com</a
+              ></small
+            >
+          </div>
+        
+          <div class="top-link">
+            <a
+              href=""
+              class="bg-light nav-fill btn btn-sm-square rounded-circle"
+              ><i class="fab fa-facebook-f text-primary"></i
+            ></a>
+            <a
+              href=""
+              class="bg-light nav-fill btn btn-sm-square rounded-circle"
+              ><i class="fab fa-twitter text-primary"></i
+            ></a>
+            <a
+              href=""
+              class="bg-light nav-fill btn btn-sm-square rounded-circle"
+              ><i class="fab fa-instagram text-primary"></i
+            ></a>
+            <a
+              href=""
+              class="bg-light nav-fill btn btn-sm-square rounded-circle me-0"
+              ><i class="fab fa-linkedin-in text-primary"></i
+            ></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Topbar End -->
+
+    <!-- Navbar Start -->
+    <div class="container-fluid bg-light">
+      <div class="container">
+        <nav class="navbar navbar-dark navbar-expand-lg py-0">
+          <a href="{% url 'home' %}" class="navbar-brand">
+            <img src="{% static 'img/logo.png' %}" alt="" srcset="" style="width: 80px" />
+          </a>
+          <button
+            type="button"
+            class="navbar-toggler me-0"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarCollapse"
+          >
+            <i class="fa fa-list text-primary fs-3"></i>
+          </button>
+          <div
+            class="collapse navbar-collapse bg-transparent"
+            id="navbarCollapse"
+          >
+            <div class="navbar-nav ms-auto mx-xl-auto p-0">
+              <a
+                href="{% url 'home' %}"
+                class="nav-item nav-link active text-warning ms-md-5"
+                >Home</a
+              >
+              <a href="#aboutus" class="nav-item nav-link">About</a>
+
+              <a href="service.html" class="nav-item nav-link">Services</a>
+              <a href="ourproject.html" class="nav-item nav-link"
+                >Our Projects</a
+              >
+              <a href="#footer" class="nav-item nav-link">Contact</a>
+            </div>
+          </div>
+          <div class="d-none d-xl-flex flex-shirink-0">
+            <div
+              id="phone-tada"
+              class="d-flex align-items-center justify-content-center me-3"
+            >
+              <a
+                href="https://wa.me/9779764632928"
+                target="_blank"
+                class="position-relative animated tada infinite"
+              >
+                <i class="fa fa-phone-alt text-primary fa-2x"></i>
+                <div class="position-absolute" style="top: -7px; left: 20px">
+                  <span><i class="fa fa-comment-dots text-warning"></i></span>
+                </div>
+              </a>
+            </div>
+            <div class="d-flex flex-column">
+              <span class="text-dark-50">Have any questions?</span>
+              <a
+                href="https://wa.me/9779764632928"
+                target="_blank"
+                class="text-warning"
+                >+977-9764632928</a
+              >
+            </div>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- Navbar End -->
