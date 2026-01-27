@@ -34,9 +34,37 @@
     center: false,
     dots: false,
     loop: true,
-    margin: 50,
+    margin: 20,
     nav: true,
     rtl: true,
+    navText: [
+      '<i class="bi bi-arrow-left"></i>',
+      '<i class="bi bi-arrow-right"></i>',
+    ],
+    responsiveClass: true,
+    responsive: {
+      0: {
+        items: 1,
+      },
+      768: {
+        items: 2,
+      },
+      992: {
+        items: 4,
+      },
+    },
+  });
+
+  // member carousel
+  $(".member-carousel").owlCarousel({
+    autoplay: true,
+    smartSpeed: 2500,
+    center: false,
+    dots: false,
+    loop: true,
+    margin: 15,
+    nav: true,
+    rtl: false,
     navText: [
       '<i class="bi bi-arrow-left"></i>',
       '<i class="bi bi-arrow-right"></i>',

@@ -82,32 +82,20 @@
     <div class="container-fluid bg-primary py-5">
       <div class="container">
         <div class="row">
-          <div class="col-lg-3 wow fadeIn" data-wow-delay=".1s">
+         {% for st in total_status  %}
+          <div class="col-lg-3 wow fadeIn" data-wow-delay=".{{ forloop.counter }}s">
             <div class="d-flex counter">
-              <h1 class="me-3 text-warning counter-value">99</h1>
-              <h5 class="text-white mt-1">Success in getting happy customer</h5>
+              <h1 class="me-3 text-warning counter-value"><span>{{ st.status_number }}</span> </h1>
+              <h5 class="text-white mt-1">{{ st.name }}</h5>
             </div>
           </div>
-          <div class="col-lg-3 wow fadeIn" data-wow-delay=".3s">
+          {% empty %}
+          <div class="col-lg-12 wow fadeIn" data-wow-delay=".1s">
             <div class="d-flex counter">
-              <h1 class="me-3 text-warning counter-value">25</h1>
-              <h5 class="text-white mt-1">Thousands of successful business</h5>
+              <h5 class="text-white mt-1">No atatus available.</h5>
             </div>
           </div>
-          <div class="col-lg-3 wow fadeIn" data-wow-delay=".5s">
-            <div class="d-flex counter">
-              <h1 class="me-3 text-warning counter-value">120</h1>
-              <h5 class="text-white mt-1">Total clients who love HighTech</h5>
-            </div>
-          </div>
-          <div class="col-lg-3 wow fadeIn" data-wow-delay=".7s">
-            <div class="d-flex counter">
-              <h1 class="me-3 text-warning counter-value">5</h1>
-              <h5 class="text-white mt-1">
-                Stars reviews given by satisfied clients
-              </h5>
-            </div>
-          </div>
+         {% endfor %}
         </div>
       </div>
     </div>
@@ -116,6 +104,8 @@
     <!-- About Start -->
     <div class="container-fluid my-5" id="aboutus">
       <div class="container pt-5">
+       {% for about in about_us %}
+
         <div class="row g-5">
           <div
             class="col-lg-5 col-md-6 col-sm-12 wow fadeIn"
@@ -123,16 +113,16 @@
           >
             <div class="h-100 position-relative">
               <img
-                src="{% static 'img/about-1.jpg' %}"
+                src="{{ about.image_back.url }}"
                 class="img-fluid w-75 rounded"
-                alt=""
+                alt="{{ about.alt_name }}"
                 style="margin-bottom: 25%"
               />
               <div class="position-absolute w-75" style="top: 25%; left: 25%">
                 <img
-                  src="{% static 'img/about-2.jpg' %}"
-                  class="img-fluid w-100 rounded"
-                  alt=""
+                  src="{{ about.image_front.url }}"
+                  class="img-fluid w-100 h-100 rounded"
+                  alt="{{ about.alt_name }}"
                 />
               </div>
             </div>
@@ -142,32 +132,32 @@
             data-wow-delay=".5s"
           >
             <h2 class="mb-4">
-              About StartupGhar And It's Innovative IT Solutions
+              {{ about.title }}
             </h2>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-              efficitur quis purus ut interdum. Pellentesque aliquam dolor eget
-              urna ultricies tincidunt. Nam volutpat libero sit amet leo cursus,
-              ac viverra eros tristique. Morbi quis quam mi. Cras vel gravida
-              eros. Proin scelerisque quam nec elementum viverra. Suspendisse
-              viverra hendrerit diam in tempus. Etiam gravida justo nec erat
-              vestibulum, et malesuada augue laoreet.
+              {{ about.description }}
             </p>
             <p class="mb-4">
-              Pellentesque aliquam dolor eget urna ultricies tincidunt. Nam
-              volutpat libero sit amet leo cursus, ac viverra eros tristique.
-              Morbi quis quam mi. Cras vel gravida eros. Proin scelerisque quam
-              nec elementum viverra. Suspendisse viverra hendrerit diam in
-              tempus.
+              {{ about.short_description }}
             </p>
           </div>
         </div>
+       {% empty %}
+       <div class="row">
+        <div class="col-lg-12 wow fadeIn" data-wow-delay=".3s">
+          <h2 class="mb-4">
+            No About Us information available.
+          </h2>
+        </div>
+       </div>
+       
+       {% endfor %}
       </div>
     </div>
     <!-- About End -->
 
     <!-- Services Start -->
-    <section class="">
+    <section class="" id="services">
       <div class="container-fluid services py-4">
         <div class="container">
           <div
@@ -178,50 +168,28 @@
             <h2>Services Built Specifically For Your Business</h2>
           </div>
           <div class="row g-5 services-inner">
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
+           {% for service in services %}
+            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".{{ forloop.counter }}s">
               <div class="services-item bg-light">
                 <div class="p-4 text-center services-content">
                   <div class="services-content-icon">
-                    <i class="fa fa-code fa-4x mb-4 text-primary"></i>
-                    <h4 class="mb-3">Web Design</h4>
+                    <img src="{{ service.icon.url }}" alt="{{ service.alt_name }}" srcset="" height="90" class="mb-3">
+                    <h4 class="mb-3">{{ service.title }}</h4>
                     <p class="mb-4">
-                      Lorem ipsum dolor sit amet elit. Sed efficitur quis purus
-                      ut interdum. Aliquam dolor eget urna ultricies tincidunt.
+                      {{ service.description }}
                     </p>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-              <div class="services-item bg-light">
-                <div class="p-4 text-center services-content">
-                  <div class="services-content-icon">
-                    <i class="fa fa-file-code fa-4x mb-4 text-primary"></i>
-                    <h4 class="mb-3">Web Development</h4>
-                    <p class="mb-4">
-                      Lorem ipsum dolor sit amet elit. Sed efficitur quis purus
-                      ut interdum. Aliquam dolor eget urna ultricies tincidunt.
-                    </p>
-                  </div>
-                </div>
-              </div>
+            {% empty %}
+            <div class="col-lg-12 wow fadeIn" data-wow-delay=".3s">
+              <h2 class="mb-4 text-center">
+                No services available.
+              </h2>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".7s">
-              <div class="services-item bg-light">
-                <div class="p-4 text-center services-content">
-                  <div class="services-content-icon">
-                    <i
-                      class="fa fa-external-link-alt fa-4x mb-4 text-primary"
-                    ></i>
-                    <h4 class="mb-3">UI/UX Design</h4>
-                    <p class="mb-4">
-                      Lorem ipsum dolor sit amet elit. Sed efficitur quis purus
-                      ut interdum. Aliquam dolor eget urna ultricies tincidunt.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+           {% endfor %}
+            
           </div>
         </div>
       </div>
@@ -241,26 +209,25 @@
       <div
         class="d-flex gap-5 gap-md-4 flex-wrap justify-content-center align-items-center"
       >
-        <div class="">
+        {% for patner in patners %}
+        <a href="{{ patner.link }}" target="_blank">
           <div class="client-img-box">
             <img
-              src="{% static '/img/logo.png' %}"
-              alt=""
+              src="{{ patner.logo.url }}"
+              alt="{{ patner.alt_name }}"
               srcset=""
               style="width: auto; height: 100px"
             />
           </div>
+        </a>
+        {% empty %}
+        <div class="col-lg-12 wow fadeIn" data-wow-delay=".3s">
+          <p class="mb-4 text-center">
+            No partners available.
+          </p>
         </div>
-        <div class="">
-          <div class="client-img-box">
-            <img
-              src="{% static '/img/ezeywaylogo.png' %}"
-              alt=""
-              srcset=""
-              style="width: auto; height: 100px"
-            />
-          </div>
-        </div>
+        
+        {% endfor %}
        
       </div>
     </div>
@@ -415,7 +382,7 @@
                   <h4 class="">Full Name</h4>
                   <p class="m-0">Designation</p>
                 </div>
-                <div class="team-icon d-flex justify-content-center pb-4">
+                {% comment %} <div class="team-icon d-flex justify-content-center pb-4">
                   <a
                     class="btn btn-square btn-primary text-white rounded-circle m-1"
                     href=""
@@ -436,49 +403,11 @@
                     href=""
                     ><i class="fab fa-linkedin-in"></i
                   ></a>
-                </div>
+                </div> {% endcomment %}
               </div>
             </div>
           </div>
-          <div class="rounded team-item">
-            <div class="team-content">
-              <div class="team-img-icon">
-                <div class="team-img rounded-circle">
-                  <img
-                    src="{% static 'img/team-2.jpg' %}"
-                    class="img-fluid w-100 rounded-circle"
-                    alt=""
-                  />
-                </div>
-                <div class="team-name text-center py-3">
-                  <h4 class="">Full Name</h4>
-                  <p class="m-0">Designation</p>
-                </div>
-                <div class="team-icon d-flex justify-content-center pb-4">
-                  <a
-                    class="btn btn-square btn-primary text-white rounded-circle m-1"
-                    href=""
-                    ><i class="fab fa-facebook-f"></i
-                  ></a>
-                  <a
-                    class="btn btn-square btn-primary text-white rounded-circle m-1"
-                    href=""
-                    ><i class="fab fa-twitter"></i
-                  ></a>
-                  <a
-                    class="btn btn-square btn-primary text-white rounded-circle m-1"
-                    href=""
-                    ><i class="fab fa-instagram"></i
-                  ></a>
-                  <a
-                    class="btn btn-square btn-primary text-white rounded-circle m-1"
-                    href=""
-                    ><i class="fab fa-linkedin-in"></i
-                  ></a>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
     </div>
@@ -496,182 +425,29 @@
             Meet our talented members driving innovation.
           </h1>
         </div>
-        <div class="row text-center">
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.1s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.1s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
+        <div class="owl-carousel member-carousel wow fadeIn" data-wow-delay=".5s">
+           {% for member in members %}
+           <div class="our-team my-2 shadow-sm py-3 px-2 h-100">
+              <div class="single-team ">
                 <img
-                  src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                  src="{{ member.photo.url }}"
                   class="img-fluid"
-                  alt=""
+                  alt="{{ member.alt_name }}"
                 />
-                <h3>Gary Hunt</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.address }}</p>
+                <p>{{ member.phone_number }}</p>
+                <p class="text-center">{{ member.company_name }}</p>
               </div>
             </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.2s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.2s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar2.png"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Ayoub Fennouni</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
-              </div>
+           {% endfor %}
+
              
-            </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.3s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.3s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar3.png"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Mark Linomit</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
-              </div>
-             
-            </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.4s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.4s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar4.png"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Thompson Luis</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
-              </div>
-             
-            </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.5s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.5s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar5.png"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Amira Yerden</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
-              </div>
-             
-            </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
-          <div
-            class="col-lg-2 col-sm-4 col-xs-12 wow fadeInUp"
-            data-wow-duration="1s"
-            data-wow-delay="0.6s"
-            data-wow-offset="0"
-            style="
-              visibility: visible;
-              animation-duration: 1s;
-              animation-delay: 0.6s;
-              animation-name: fadeInUp;
-            "
-          >
-            <div class="our-team">
-              <div class="single-team">
-                <img
-                  src="https://bootdey.com/img/Content/avatar/avatar6.png"
-                  class="img-fluid"
-                  alt=""
-                />
-                <h3>Martha Valdes</h3>
-                <p>Kathmandu</p>
-                <p>+977-9800000000</p>
-                <p>Krishi Farm</p>
-              </div>
-             
-            </div>
-            <!--- END OUR TEAM -->
-          </div>
-          <!--- END COL -->
         </div>
-        <!--- END ROW -->
+
+
+
+      
       </div>
       <!--- END CONTAINER -->
     </section>

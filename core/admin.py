@@ -18,3 +18,87 @@ class HeroSectionImageAdmin(ModelAdmin):
         return "-"
 
     display_image.short_description = "Preview"
+
+@admin.register(Status)
+class StatusAdmin(ModelAdmin):
+    list_display = ("name", "status_number")
+    search_fields = ("name", "status_number")
+    list_filter = (
+        ("status_number", ChoicesDropdownFilter),
+    )
+
+@admin.register(About)
+class AboutAdmin(ModelAdmin):
+    list_display = (
+        "title",
+        "description",
+        "short_description",
+        "display_image_back",
+        "display_image_front",
+        "is_active",
+    )
+
+    def display_image_back(self, obj):
+        if obj.image_back:
+            return format_html('<img src="{}" width="80" />', obj.image_back.url)
+        return "-"
+
+    def display_image_front(self, obj):
+        if obj.image_front:
+            return format_html('<img src="{}" width="80" />', obj.image_front.url)
+        return "-"
+
+    display_image_back.short_description = "Back Image"
+    display_image_front.short_description = "Front Image"
+
+@admin.register(Service)
+class ServiceAdmin(ModelAdmin):
+    list_display = (
+        "title",
+        "description",
+        "display_image",
+    )
+
+    def display_image(self, obj):
+        if obj.icon:
+            return format_html('<img src="{}" width="80" />', obj.icon.url)
+        return "-"
+
+    display_image.short_description = "Icon Preview"
+
+@admin.register(Patner)
+class PatnerAdmin(ModelAdmin):
+    list_display = (
+        "name",
+        "link",
+        "display_logo",
+    )
+
+    def display_logo(self, obj):
+        if obj.logo:
+            return format_html('<img src="{}" width="80" />', obj.logo.url)
+        return "-"
+
+    display_logo.short_description = "Logo Preview"
+
+@admin.register(Member)
+class MemberAdmin(ModelAdmin):
+    list_display = (
+        "name",
+        "address",
+        "phone_number",
+        "position",
+        "company_name",
+        "display_photo",
+    )
+
+    def display_photo(self, obj):
+        if obj.photo:
+            return format_html('<img src="{}" width="80" />', obj.photo.url)
+        return "-"
+
+    display_photo.short_description = "Photo Preview"
+
+
+
+
