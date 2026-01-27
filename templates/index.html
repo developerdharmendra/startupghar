@@ -34,7 +34,7 @@
                 <p class="mb-4 text-white fs-5 animated fadeInDown">
                   {{ hero.description }}
                 </p>
-                <a href="about.html" class="me-2"
+                {% comment %} <a href="about.html" class="me-2"
                   ><button
                     type="button"
                     class="px-4 py-sm-3 px-sm-5 btn btn-warning rounded-pill carousel-content-btn1 animated fadeInLeft"
@@ -49,7 +49,7 @@
                   >
                     Contact Us
                   </button></a
-                >
+                > {% endcomment %}
               </div>
             </div>
           </div>
@@ -301,57 +301,39 @@
           class="owl-carousel testimonial-carousel wow fadeIn"
           data-wow-delay=".5s"
         >
+          {% for testimonial in testimonials %}
           <div class="testimonial-item border p-4">
-            <div class="d-flex align-items-center">
+            <div class="d-flex align-items-center align-items-start ">
               <div class="">
-                <img src="{% static 'img/testimonial-1.jpg' %}" alt="" />
+                <img src="{{ testimonial.client_image.url }}" alt="{{ testimonial.alt_name }}" style="height: 120px; width: 120px; object-fit:cover;" />
               </div>
-              <div class="ms-4">
-                <h4 class="text-warning">Client Name</h4>
-                <p class="m-0 pb-3">Profession</p>
+              <div class="ms-4" >
+                <h4 class="text-warning">{{ testimonial.client_name }}</h4>
+                <p class="m-0 pb-3">{{ testimonial.profession }}</p>
                 <div class="d-flex pe-5">
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
+                  {% for i in "12345"|make_list %}
+                    {% if forloop.counter <= testimonial.rating %}
+                      <i class="fas fa-star me-1 text-primary"></i>
+                    {% else %}
+                      <i class="far fa-star me-1 text-primary"></i>
+                    {% endif %}
+                  {% endfor %}
                 </div>
               </div>
             </div>
             <div class="border-top mt-4 pt-3">
               <p class="mb-0">
-                Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut
-                interdum aliquam dolor eget urna. Nam volutpat libero sit amet
-                leo cursus, ac viverra eros morbi quis quam mi.
+                {{ testimonial.testimonial_text|truncatewords:25 }}
               </p>
             </div>
           </div>
-          <div class="testimonial-item border p-4">
-            <div class="d-flex align-items-center">
-              <div class="">
-                <img src="{% static 'img/testimonial-2.jpg' %}" alt="" />
-              </div>
-              <div class="ms-4">
-                <h4 class="text-warning">Client Name</h4>
-                <p class="m-0 pb-3">Profession</p>
-                <div class="d-flex pe-5">
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                  <i class="fas fa-star me-1 text-primary"></i>
-                </div>
-              </div>
-            </div>
-            <div class="border-top mt-4 pt-3">
-              <p class="mb-0">
-                Lorem ipsum dolor sit amet elit. Sed efficitur quis purus ut
-                interdum aliquam dolor eget urna. Nam volutpat libero sit amet
-                leo cursus, ac viverra eros morbi quis quam mi.
-              </p>
+          {% empty %}
+          <div class="testimonial-item border p-4 d-flex flex-column h-100">
+            <div class="text-center">
+              <p class="mb-0">No testimonials available.</p>
             </div>
           </div>
-         
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -368,19 +350,20 @@
           <h1>Meet our expert Team</h1>
         </div>
         <div class="owl-carousel team-carousel wow fadeIn" data-wow-delay=".5s">
+         {% for team in team_members %}
           <div class="rounded team-item">
-            <div class="team-content">
+            <div class="team-content pb-3">
               <div class="team-img-icon">
                 <div class="team-img rounded-circle">
                   <img
-                    src="{% static 'img/team-1.jpg' %}"
-                    class="img-fluid w-100 rounded-circle"
-                    alt=""
+                    src="{{ team.photo.url }}"
+                    class=""
+                    alt="{{ team.alt_name }}"
                   />
                 </div>
                 <div class="team-name text-center py-3">
-                  <h4 class="">Full Name</h4>
-                  <p class="m-0">Designation</p>
+                  <h4 class="">{{ team.name }}</h4>
+                  <p class="m-0">{{ team.position }}</p>
                 </div>
                 {% comment %} <div class="team-icon d-flex justify-content-center pb-4">
                   <a
@@ -407,6 +390,14 @@
               </div>
             </div>
           </div>
+          {% empty %}
+          <div class="col-lg-12 wow fadeIn" data-wow-delay=".3s">
+            <h2 class="mb-4 text-center">
+              No team members available.
+            </h2>
+          </div>
+         
+         {% endfor %}
           
         </div>
       </div>

@@ -79,3 +79,30 @@ class Member(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Team(models.Model):
+    name = models.CharField(max_length=255)
+    position = models.CharField(max_length=255)
+    photo = models.ImageField(upload_to="teams/")
+    alt_name = models.CharField(max_length=155)
+
+    class Meta:
+        db_table = "team"
+
+    def __str__(self):
+        return self.name
+
+class Testimonial(models.Model):
+    client_name = models.CharField(max_length=255)
+    profession = models.CharField(max_length=255)
+    rating = models.IntegerField(default=5, choices=[(i, i) for i in range(1, 6)])
+    testimonial_text = models.TextField()
+    client_image = models.ImageField(upload_to="testimonials/")
+    alt_name = models.CharField(max_length=155)
+    is_active = models.BooleanField(default=True)
+
+    class Meta:
+        db_table = "testimonial"
+
+    def __str__(self):
+        return f"{self.client_name} - {self.profession}"

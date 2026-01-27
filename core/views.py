@@ -8,6 +8,8 @@ def home(request):
     services = Service.objects.all()
     patners = Patner.objects.all()
     members = Member.objects.all()
+    team_members = Team.objects.all()
+    testimonials = Testimonial.objects.filter(is_active=True)
     context={
         "hero_images": HeroSectionImage.objects.filter(is_active=True),
         "total_status": total_status,
@@ -15,5 +17,7 @@ def home(request):
         "services": services,
         "patners": patners,
         "members": members,
+        "team_members": team_members,
+        "testimonials": testimonials,
     }
     return render(request, "index.html", context=context)

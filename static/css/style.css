@@ -262,8 +262,8 @@
 }
 
 .carousel-control-prev {
-  width: 90px;
-  height: 60px;
+  width: 60px;
+  height: 50px;
   position: absolute;
   top: 50%;
   left: 0;
@@ -278,8 +278,8 @@
 }
 
 .carousel-control-next {
-  width: 90px;
-  height: 60px;
+  width: 60px;
+  height: 50px;
   position: absolute;
   top: 50%;
   right: 0;
@@ -587,8 +587,22 @@
 .team-img {
   border: 10px solid var(--bs-white);
 }
+@media(max-width: 768px) {
+  .team-img img {
+  height: 285px !important;
+  width: 100% !important;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 5px solid var(--bs-secondary);
+  transition: 0.5s;
+}
+}
 
 .team-img img {
+  height: 255px ;
+  width: 100% !important;
+  border-radius: 50%;
+  object-fit: cover;
   border: 5px solid var(--bs-secondary);
   transition: 0.5s;
 }
@@ -655,6 +669,9 @@
 /*** Testimonial Start ***/
 
 .testimonial-item {
+  height: 100%;
+  min-height: 330px;
+  position: relative;
   background: #e3f0eb;
 }
 
@@ -794,20 +811,18 @@ a {
 
 .our-team {
   display: flex;
-  background-color: #F2F2F4;
+  background-color: #f2f2f4;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   flex-direction: column;
   height: 100%;
   min-height: 310px;
-
 }
 .single-team {
-  display: flex ;
+  display: flex;
   align-items: center;
   flex-direction: column;
-  
 }
 .single-team:hover {
   transform: scale(0.9);
@@ -829,8 +844,6 @@ a {
 .single-team p {
   margin-bottom: 0px;
 }
-
-
 
 .facebook {
   background: #1c58a1;

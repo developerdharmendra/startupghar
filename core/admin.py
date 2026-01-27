@@ -99,6 +99,40 @@ class MemberAdmin(ModelAdmin):
 
     display_photo.short_description = "Photo Preview"
 
+@admin.register(Team)
+class TeamAdmin(ModelAdmin):
+    list_display = (
+        "name",
+        "position",
+        "display_photo",
+    )
+
+    def display_photo(self, obj):
+        if obj.photo:
+            return format_html('<img src="{}" width="80" />', obj.photo.url)
+        return "-"
+
+    display_photo.short_description = "Photo Preview"
+
+@admin.register(Testimonial)
+class TestimonialAdmin(ModelAdmin):
+    list_display = (
+        "client_name",
+        "profession",
+        "rating",
+        "display_image",
+        "is_active",
+    )
+    list_filter = ("rating", "is_active")
+    search_fields = ("client_name", "profession")
+
+    def display_image(self, obj):
+        if obj.client_image:
+            return format_html('<img src="{}" width="80" />', obj.client_image.url)
+        return "-"
+
+    display_image.short_description = "Client Image"
+
 
 
 
