@@ -8,7 +8,7 @@
             <small class="me-3 text-white-100"
               ><a href="#"
                 ><i class="fas fa-map-marker-alt me-2 text-warning"></i></a
-              >Lahan, Siraha, Nepal</small
+              >Imadol, Lalitpur, Nepal</small
             >
             <small class="me-3 text-white-50"
               ><a href="mailto:admin@startupghar.com" class="text-white-50"
@@ -64,20 +64,20 @@
             class="collapse navbar-collapse bg-transparent"
             id="navbarCollapse"
           >
-            <div class="navbar-nav ms-auto p-0 me-2">
+            <div class="navbar-nav ms-auto p-0 me-3">
               <a
                 href="{% url 'home' %}"
                 class="nav-item nav-link active text-warning ms-md-5"
                 >Home</a
               >
-              <a href="#aboutus" class="nav-item nav-link">About</a>
+              <a href="{% url 'home' %}#aboutus" class="nav-item nav-link">About</a>
 
-              <a href="#services" class="nav-item nav-link">Services</a>
+              <a href="{% url 'home' %}#services" class="nav-item nav-link">Services</a>
               
-              <a href="ourproject.html" class="nav-item nav-link"
+              <a href="{% url 'home' %}#projects" class="nav-item nav-link"
                 >Our Projects</a
               >
-              <a href="#footer" class="nav-item nav-link">Contact</a>
+              <a href="{% url 'home' %}#footer" class="nav-item nav-link">Contact</a>
             </div>
           </div>
           <div class="d-none d-xl-flex flex-shirink-0">
@@ -86,7 +86,7 @@
               class="d-flex align-items-center justify-content-center me-3"
             >
               <a
-                href="https://wa.me/9779764632928"
+                href="https://wa.me/9779768382318"
                 target="_blank"
                 class="position-relative animated tada infinite"
               >
@@ -99,10 +99,10 @@
             <div class="d-flex flex-column">
               <span class="text-dark-50">Have any questions?</span>
               <a
-                href="https://wa.me/9779764632928"
+                href="https://wa.me/9779768382318"
                 target="_blank"
                 class="text-warning"
-                >+977-9764632928</a
+                >+977-9768382318</a
               >
             </div>
           </div>

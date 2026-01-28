@@ -10,8 +10,9 @@ def home(request):
     members = Member.objects.all()
     team_members = Team.objects.all()
     testimonials = Testimonial.objects.filter(is_active=True)
+    projects = Project.objects.all()
     context={
-        "hero_images": HeroSectionImage.objects.filter(is_active=True),
+        "hero_images": HeroSection.objects.filter(is_active=True),
         "total_status": total_status,
         "about_us": about_us,
         "services": services,
@@ -19,5 +20,16 @@ def home(request):
         "members": members,
         "team_members": team_members,
         "testimonials": testimonials,
+        "projects": projects,
     }
     return render(request, "index.html", context=context)
+
+def project_detail(request, project_slug):
+    project = Project.objects.get(slug=project_slug)
+    context = {
+        "project": project,
+    }
+    return render(request, "project_detail.html", context=context)
+
+def privacy_policy(request):
+    return render(request, "privacy_policy.html")

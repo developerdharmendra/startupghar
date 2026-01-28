@@ -6,7 +6,7 @@
 
 {% block content %}
     <!-- Carousel Start -->
-    <div class="container-fluid px-0">
+    <div class="container-fluid px-0 hero-img">
       <div id="carouselId" class="carousel slide" data-bs-ride="carousel">
         {% if hero_images %}
         <ol class="carousel-indicators">
@@ -22,7 +22,7 @@
         <div class="carousel-inner" role="listbox">
           {% for hero in hero_images %}
           <div class="carousel-item {% if forloop.first %}active{% endif %}">
-            <img src="{{ hero.image.url }}" class="img-fluid" alt="{{ hero.alt_name }}" />
+            <img src="{{ hero.image.url }}" class="" alt="{{ hero.alt_name }}" />
             <div class="carousel-caption">
               <div class="container carousel-content">
                 <h6 class="text-warning h4 animated fadeInUp">
@@ -79,7 +79,7 @@
     <!-- Carousel End -->
 
     <!-- Fact Start -->
-    <div class="container-fluid bg-primary py-5">
+    <div class="container-fluid bg-primary py-3 py-md-5">
       <div class="container">
         <div class="row">
          {% for st in total_status  %}
@@ -234,7 +234,7 @@
     <!-- clients section end  -->
 
     <!-- Project Start -->
-    <section class="">
+    <section class="" id="projects">
       <div class="container-fluid project py-4">
         <div class="container">
           <div
@@ -245,40 +245,32 @@
             <h2>Our Recently Completed Projects</h2>
           </div>
           <div class="row g-5">
+            {% for project in projects %}
             <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".3s">
               <div class="project-item">
                 <div class="project-img">
                   <img
-                    src="{% static 'img/project-1.jpg' %}"
+                    src="{{ project.image.url }}"
                     class="img-fluid w-100 rounded"
-                    alt=""
+                    alt="{{ project.alt_name }}"
                   />
                   <div class="project-content">
-                    <a href="#" class="text-center">
-                      <h4 class="text-warning">Web design</h4>
-                      <p class="m-0 text-white">Web Analysis</p>
+                    <a href="{% url 'project_detail' project.slug %}" class="text-center">
+                      <h4 class="text-warning">{{ project.title|truncatewords:5 }}</h4>
+                      <p class="m-0 text-white">{{ project.description|truncatewords:15 }}</p>
                     </a>
                   </div>
                 </div>
               </div>
             </div>
-            <div class="col-md-6 col-lg-4 wow fadeIn" data-wow-delay=".5s">
-              <div class="project-item">
-                <div class="project-img">
-                  <img
-                    src="{% static 'img/project-2.jpg' %}"
-                    class="img-fluid w-100 rounded"
-                    alt=""
-                  />
-                  <div class="project-content">
-                    <a href="#" class="text-center">
-                      <h4 class="text-warning">Cyber Security</h4>
-                      <p class="m-0 text-white">Cyber Security Core</p>
-                    </a>
-                  </div>
-                </div>
-              </div>
+            {% empty %}
+            <div class="col-lg-12 wow fadeIn" data-wow-delay=".3s">
+              <p class="mb-4 text-center">
+                No projects available.
+              </p>
             </div>
+            {% endfor %}
+           
            
           </div>
         </div>

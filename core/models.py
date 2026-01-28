@@ -1,8 +1,8 @@
 from django.db import models
-
+from django.utils.text import slugify
 # Create your models here.
 
-class HeroSectionImage(models.Model):
+class HeroSection(models.Model):
     sub_title = models.CharField(max_length=155)
     title = models.CharField(max_length=255)
     description = models.TextField()
@@ -106,3 +106,20 @@ class Testimonial(models.Model):
 
     def __str__(self):
         return f"{self.client_name} - {self.profession}"
+
+class Project(models.Model):
+    title = models.CharField(max_length=255)
+    slug = models.SlugField(max_length=255, unique=True)
+    description = models.TextField()
+    image = models.ImageField(upload_to="projects/")
+    alt_name = models.CharField(max_length=155)
+
+    class Meta:
+        db_table = "project"
+
+    def __str__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super().save(*args, **kwargs)

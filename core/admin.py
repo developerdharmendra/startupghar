@@ -2,14 +2,16 @@ from django.contrib import admin
 from .models import *
 from django.utils.html import format_html
 from django.db import models
+from django.contrib.auth.models import Group, User
 # Register your models here.
 from unfold.admin import ModelAdmin
 from unfold.contrib.filters.admin import ChoicesDropdownFilter
-from unfold.contrib.forms.widgets import WysiwygWidget
-from unfold.forms import AdminPasswordChangeForm, UserChangeForm, UserCreationForm
 
-@admin.register(HeroSectionImage)
-class HeroSectionImageAdmin(ModelAdmin):
+admin.site.unregister(Group)
+admin.site.unregister(User)
+
+@admin.register(HeroSection)
+class HeroSectionAdmin(ModelAdmin):
     list_display = ("sub_title","title","description", "display_image")  # show preview in list view
 
     def display_image(self, obj):
@@ -132,6 +134,22 @@ class TestimonialAdmin(ModelAdmin):
         return "-"
 
     display_image.short_description = "Client Image"
+
+@admin.register(Project)
+class ProjectAdmin(ModelAdmin):
+    list_display = (
+        "title",
+        "description",
+        "display_image",
+    )
+    prepopulated_fields = {"slug": ("title",)}
+
+    def display_image(self, obj):
+        if obj.image:
+            return format_html('<img src="{}" width="80" />', obj.image.url)
+        return "-"
+
+    display_image.short_description = "Project Image"
 
 
 
